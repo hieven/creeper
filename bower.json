@@ -1,0 +1,19 @@
+{
+  "name": "creeper",
+  "version": "0.0.0",
+  "authors": [
+    "Even <kiki44552002@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4"
+  }
+}
