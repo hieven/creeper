@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var sassMiddleware = require('node-sass-middleware')
 
 var app = express();
 
@@ -21,6 +21,15 @@ var db = require('./model');
  ************************************************/
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+
+app.use(
+  sassMiddleware({
+    src: __dirname + '/scss', //where the sass files are 
+    dest: __dirname + '/public', //where css should go
+    debug: true // obvious
+  })
+);
 
 
 
