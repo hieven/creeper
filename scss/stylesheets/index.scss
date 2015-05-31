@@ -1,6 +1,18 @@
 // Global variables
 $azure-color: #11A8AB;
 $M:           10px;
+
+// Global setting
+body {
+  padding-top:      60px;
+  background:       url('../images/bg.jpg') 0 0 repeat #f2f2f2;
+}
+
+// Header
+header {
+  background-image: url('../images/header.jpg');
+}
+
 // Footer
 footer {
   width: 100%;
@@ -29,6 +41,6 @@ footer {
     width:      35%;
     border-top: 1px solid #333;
     font-size:  16px;
-    color: rgb(153, 153, 153);
+    color:      rgb(153, 153, 153);
   }
 }

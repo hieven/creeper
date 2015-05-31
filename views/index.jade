@@ -1,5 +1,20 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  
+  header
+
+
+  .container
+    .row
+      .left-section
+        .entry-list
+          h2.title 本日頭條
+          .timeline
+            .item
+              img.capture(src="", alt="capture")
+              h2.item-title
+              span.item-date
+              span.item-author
+              span.tags
+      .right-section
