@@ -3,10 +3,13 @@ html
   head
     title= "Creeper"
     link(rel="stylesheet", href="/components/bootstrap/dist/css/bootstrap.min.css")
+    link(rel="stylesheet", href="/components/components-font-awesome/css/font-awesome.min.css")
     link(rel="stylesheet", href="/stylesheets/index.css")
   body
 
+    include ./header
     block content
+    include ./footer
 
     script(src="/components/jquery/dist/jquery.min.js")
     script(src="/components/bootstrap/dist/js/bootstrap.min.js")
