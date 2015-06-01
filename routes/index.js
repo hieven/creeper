@@ -1,21 +1,26 @@
 var express = require('express');
 var router = express.Router();
-
-
-/***********************************************
- **  REQUIRE EACH ROUTE
- ************************************************/
-router.use('/users', require('./users'));
-
+var home = require('./home');
+var users = require('./users');
 
 
 /***********************************************
  **  GET HOME PAGE
  ************************************************/
-router.get('/', function(req, res) {
-    //console.log(req.cookies.member);
-    console.log(req.session);
-    res.render('index', {});
-});
+router.get('/', home.index);
+
+
+
+// Users API
+router.get('/users/', users.index);
+router.post('/users/', users.create);
+router.get('/users/new', users.new);
+router.get('/users/login', users.login_page);
+router.post('/users/login', users.login);
+router.get('/users/:id', users.show);
+router.get('/users/:id/edit', users.edit);
+router.post('/users/:id/delete', users.delete);
+
+
 
 module.exports = router;

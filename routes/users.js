@@ -5,17 +5,17 @@ var User = require('../models').user;
 /***********************************************
  **  GET USERS
  ************************************************/
-router.get('/', function(req, res, next) {
+exports.index = function(req, res, next) {
     res.json({
         status: 'succeed'
     });
-});
+};
 
 
 /***********************************************
  **  CREATE
  ************************************************/
-router.post('/', function(req, res, next) {
+exports.create = function(req, res, next) {
     var body = req.body;
 
     User.create(body)
@@ -28,23 +28,23 @@ router.post('/', function(req, res, next) {
         });
 
 
-});
+};
 
 /***********************************************
  **  NEW
  ************************************************/
-router.get('/new', function(req, res, next) {
+exports.new = function(req, res, next) {
     res.render('./users/new');
-});
+};
 
 /***********************************************
  **  LOGIN
  ************************************************/
-router.get('/login', function(req, res, next) {
+exports.login_page = function(req, res, next) {
     res.render('./users/login');
-});
+};
 
-router.post('/login', function(req, res, next) {
+exports.login = function(req, res, next) {
     var body = req.body;
 
     User.findOne({
@@ -55,13 +55,12 @@ router.post('/login', function(req, res, next) {
             status: 'success'
         });
     });
-
-});
+};
 
 /***********************************************
  **  SHOW
  ************************************************/
-router.get('/:id', function(req, res, next) {
+exports.show = function(req, res, next) {
     var id = req.params.id;
     console.log(id);
     User.findAsync({
@@ -74,19 +73,18 @@ router.get('/:id', function(req, res, next) {
                 status: 'succeed'
             });
         });
-
-});
+};
 
 
 /***********************************************
  **  EDIT
  ************************************************/
-router.get('/:id/edit', function(req, res, next) {
+exports.edit = function(req, res, next) {
     var body = req.body;
     res.json({
         status: 'succeed'
     });
-});
+};
 
 
 /***********************************************
@@ -103,10 +101,9 @@ router.get('/:id/edit', function(req, res, next) {
 /***********************************************
  **  DELETE
  ************************************************/
-router.delete('/:id', function(req, res, next) {
+exports.delete = function(req, res, next) {
     var body = req.body;
     res.json({
         status: 'succeed'
     });
-});
-module.exports = router;
+};
