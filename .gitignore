@@ -3,3 +3,4 @@ public/components/*
 public/stylesheets/*
 public/images/*
 config/local.js
+config/config.json

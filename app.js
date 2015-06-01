@@ -5,14 +5,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var sassMiddleware = require('node-sass-middleware');
-
+var session = require('express-session');
+var RedisStore = require('connect-redis')(session);
+var config = require('./config/local');
 var app = express();
 
-
-/***********************************************
- **  DATABASE CONNECTION
- ************************************************/
-var db = require('./model');
+var SESSION_SECRET = 'evenandrewyiling';
 
 
 
@@ -44,6 +42,20 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(require('./routes'));
+
+
+/***********************************************
+ **  SESSION SETTING (USING REDIS)
+ ***********************************************/
+app.use(session({
+  store: new RedisStore(config.session.redis),
+  secret: SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 30 // 30 days
+  }
+}));
 
 /***********************************************
  **  CATCH 404 AND FORWARD TO ERROR HANDLER

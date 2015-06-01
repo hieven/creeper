@@ -16,9 +16,11 @@
     "jade": "~1.9.2",
     "mongoose": "^4.0.3",
     "morgan": "~1.5.1",
+    "mysql": "^2.7.0",
     "node-sass": "^3.1.2",
     "node-sass-middleware": "^0.8.0",
     "sequelize": "^3.1.1",
+    "sequelize-cli": "^1.7.0",
     "serve-favicon": "~2.2.0"
   },
   "devDependencies": {

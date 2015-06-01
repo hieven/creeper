@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var User = require('../model').User;
+var User = require('../models').user;
 
 /***********************************************
  **  GET USERS
@@ -17,19 +17,17 @@ router.get('/', function(req, res, next) {
  ************************************************/
 router.post('/', function(req, res, next) {
     var body = req.body;
-    var user = new User(body);
-    user.save(function(err, user) {
-        if (err) {
-            console.log(err);
-            return res.redirect(200, 'back');
-        }
-        res.render('index');
-    });
-    /*res.json({
-        body: body,
-        user: user,
-        status: 'succeed'
-    });*/
+
+    User.create(body)
+        .then(function(user) {
+            res.json({
+                body: body,
+                user: user,
+                status: 'succeed'
+            });
+        });
+
+
 });
 
 /***********************************************
@@ -49,26 +47,14 @@ router.get('/login', function(req, res, next) {
 router.post('/login', function(req, res, next) {
     var body = req.body;
 
-    User.findOneAsync(body)
-        .then(function(user) {
-            if (user === null) {
-                console.log('There is no such user.');
-                return res.redirect(301, 'back');
-            }
-
-            res.cookie('member', {
-                id: user.id
-            }, {
-                expires: new Date(Date.now() + 10000)
-            });
-            res.redirect(301, '/');
-        })
-        .error(function(err) {
-            res.json({
-                error: err,
-                status: 'error'
-            });
+    User.findOne({
+        where: body
+    }).then(function(user) {
+        res.json({
+            user: user,
+            status: 'success'
         });
+    });
 
 });
 
