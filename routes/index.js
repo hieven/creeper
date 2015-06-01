@@ -13,6 +13,7 @@ router.use('/users', require('./users'));
  **  GET HOME PAGE
  ************************************************/
 router.get('/', function(req, res) {
+    console.log(req.cookies.member);
     res.render('index', {});
 });
 

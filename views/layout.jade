@@ -2,13 +2,15 @@ doctype html
 html
   head
     title= "Creeper"
-    link(rel="stylesheet", href="/components/bootstrap/dist/css/bootstrap.min.css")
+    
     link(rel="stylesheet", href="/components/components-font-awesome/css/font-awesome.min.css")
     link(rel="stylesheet", href="/stylesheets/index.css")
+    block head
   body
 
     include ./partials/header
-    block content
+    .container
+      block content
     include ./partials/footer
 
     script(src="/components/jquery/dist/jquery.min.js")

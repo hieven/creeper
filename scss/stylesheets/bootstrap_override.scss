@@ -1,0 +1,11 @@
+.btn-azure {
+  color:            white;
+  background-color: $azure-color;
+  border-color:     $azure-color;
+
+  &:hover {
+    color:            white;
+    background-color: $azure-hover-color;
+    border-color:     $azure-hover-color;
+  }
+}

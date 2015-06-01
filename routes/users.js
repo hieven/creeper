@@ -17,22 +17,60 @@ router.get('/', function(req, res, next) {
  ************************************************/
 router.post('/', function(req, res, next) {
     var body = req.body;
-    res.json({
-        body: body,
-        status: 'succeed'
+    var user = new User(body);
+    user.save(function(err, user) {
+        if (err) {
+            console.log(err);
+            return res.redirect(200, 'back');
+        }
+        res.render('index');
     });
+    /*res.json({
+        body: body,
+        user: user,
+        status: 'succeed'
+    });*/
 });
 
 /***********************************************
  **  NEW
  ************************************************/
 router.get('/new', function(req, res, next) {
-    res.json({
-        status: 'succeed'
-    });
+    res.render('./users/new');
 });
 
+/***********************************************
+ **  LOGIN
+ ************************************************/
+router.get('/login', function(req, res, next) {
+    res.render('./users/login');
+});
 
+router.post('/login', function(req, res, next) {
+    var body = req.body;
+
+    User.findOneAsync(body)
+        .then(function(user) {
+            if (user === null) {
+                console.log('There is no such user.');
+                return res.redirect(301, 'back');
+            }
+
+            res.cookie('member', {
+                id: user.id
+            }, {
+                expires: new Date(Date.now() + 10000)
+            });
+            res.redirect(301, '/');
+        })
+        .error(function(err) {
+            res.json({
+                error: err,
+                status: 'error'
+            });
+        });
+
+});
 
 /***********************************************
  **  SHOW
