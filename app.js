@@ -41,21 +41,34 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(require('./routes'));
 
 
 /***********************************************
  **  SESSION SETTING (USING REDIS)
  ***********************************************/
-app.use(session({
-  store: new RedisStore(config.session.redis),
-  secret: SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    maxAge: 1000 * 60 * 60 * 24 * 30 // 30 days
-  }
-}));
+var redis = require('redis');
+var client = redis.createClient(); //CREATE REDIS CLIENT
+client.select(3, function() { /* ... */ });
+client.set("string key", "string val", redis.print);
+client.on('error', function(err) {
+  console.log('Redis error: ' + err);
+});
+client.on('ready', function(err) {
+  console.log('connected');
+  app.use(session({
+
+    secret: SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true
+  }));
+});
+
+
+console.log(config.session.redis);
+
+
+
+app.use(require('./routes'));
 
 /***********************************************
  **  CATCH 404 AND FORWARD TO ERROR HANDLER

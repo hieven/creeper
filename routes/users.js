@@ -6,6 +6,9 @@ var User = require('../models').user;
  **  GET USERS
  ************************************************/
 exports.index = function(req, res, next) {
+    console.log('index');
+    console.log(req.session);
+    console.log(req.session.member);
     res.json({
         status: 'succeed'
     });
@@ -47,9 +50,16 @@ exports.login_page = function(req, res, next) {
 exports.login = function(req, res, next) {
     var body = req.body;
 
+
     User.findOne({
         where: body
     }).then(function(user) {
+        console.log('login');
+        console.log(req.session);
+        //console.log(req.session.member);
+        req.session.member = {
+            status: 'member'
+        };
         res.json({
             user: user,
             status: 'success'
