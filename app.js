@@ -56,7 +56,10 @@ client.on('error', function(err) {
 client.on('ready', function(err) {
   console.log('connected');
   app.use(session({
+    store: new RedisStore({
 
+      client: client
+    }),
     secret: SESSION_SECRET,
     resave: false,
     saveUninitialized: true
