@@ -1,14 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models').user;
+var middlewares = require('./middlewares');
 
 /***********************************************
- **  GET USERS
+ **  GET ALL USERS
  ************************************************/
 exports.index = function(req, res, next) {
-    console.log('index');
-    console.log(req.session);
-    console.log(req.session.member);
     res.json({
         status: 'succeed'
     });
@@ -23,14 +21,12 @@ exports.create = function(req, res, next) {
 
     User.create(body)
         .then(function(user) {
-            res.json({
-                body: body,
-                user: user,
-                status: 'succeed'
-            });
+            req.session.user = {
+                user_id: user.id,
+                username: user.username,
+            };
+            res.redirect(301, '/');
         });
-
-
 };
 
 /***********************************************
@@ -54,23 +50,36 @@ exports.login = function(req, res, next) {
     User.findOne({
         where: body
     }).then(function(user) {
-        console.log('login');
-        console.log(req.session);
-        //console.log(req.session.member);
-        req.session.member = {
-            status: 'member'
+
+        if (user === null) {
+            return res.redirect(301, 'back');
+        }
+        console.log(user);
+        req.session.user = {
+            user_id: user.id,
+            username: user.username,
         };
-        res.json({
-            user: user,
-            status: 'success'
-        });
+
+        res.redirect('/');
     });
+};
+
+/***********************************************
+ **  LOGOUT
+ ************************************************/
+exports.logout = function(req, res, next) {
+    req.session.destroy(function(err) {
+        if (err) console.log('session delete error ' + err);
+        res.redirect(301, '/');
+    });
+
 };
 
 /***********************************************
  **  SHOW
  ************************************************/
 exports.show = function(req, res, next) {
+    var member = middlewares.assign_user(req);
     var id = req.params.id;
     console.log(id);
     User.findAsync({
@@ -90,6 +99,7 @@ exports.show = function(req, res, next) {
  **  EDIT
  ************************************************/
 exports.edit = function(req, res, next) {
+    var member = middlewares.assign_user(req);
     var body = req.body;
     res.json({
         status: 'succeed'

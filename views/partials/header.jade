@@ -13,24 +13,24 @@ nav.navbar.navbar-inverse.navbar-fixed-top
     .collapse.navbar-collapse#test
       ul.nav.navbar-nav
         li
-          a(href="#") 1
+          a(href="/admin") 1
         li
           a(href="#") 2
         li
           a(href="#") 3
       ul.nav.navbar-nav.navbar-right
-        - if (current_user)
+        - if (user)
           li
             a.dropdown-toggle(href="#",
                               data-toggle="dropdown", 
                               role="button", 
-                              aria-expanded="false") Yi-Wen Chang
+                              aria-expanded="false")= user.username
               span.caret
             ul.dropdown-menu(role="menu")
               li
-                a(href="#") Setting
+                a(href="#") 設定
               li
-                a(href="#") Log out
+                a(href="/users/logout") 登出
         - else
           li
             a(href="/users/new") 註冊

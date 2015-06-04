@@ -25,7 +25,7 @@ app.use(
   sassMiddleware({
     src: __dirname + '/scss', //where the sass files are 
     dest: __dirname + '/public', //where css should go
-    debug: true // obvious
+    debug: false // obvious
   })
 );
 
@@ -46,29 +46,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 /***********************************************
  **  SESSION SETTING (USING REDIS)
  ***********************************************/
-var redis = require('redis');
-var client = redis.createClient(); //CREATE REDIS CLIENT
-client.select(3, function() { /* ... */ });
-client.set("string key", "string val", redis.print);
-client.on('error', function(err) {
-  console.log('Redis error: ' + err);
-});
-client.on('ready', function(err) {
-  console.log('connected');
-  app.use(session({
-    store: new RedisStore({
 
-      client: client
-    }),
-    secret: SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true
-  }));
-});
-
-
-console.log(config.session.redis);
-
+app.use(session({
+  store: new RedisStore(config.session.redis),
+  secret: SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 30 // 30 days
+  }
+}));
 
 
 app.use(require('./routes'));
