@@ -4,6 +4,7 @@ var middlewares = require('./middlewares');
 var home = require('./home');
 var users = require('./users');
 var admins = require('./admins');
+var articles = require('./articles');
 
 
 // General API
@@ -13,9 +14,6 @@ router.get('*', middlewares.assign_user);
 // Get Home page
 router.get('/', home.index);
 
-// Admins API
-router.all('/admin/*', middlewares.check_admin);
-router.get('/admin', admins.index);
 
 // Users API
 router.get('/users/', users.index);
@@ -28,6 +26,12 @@ router.get('/users/:id', users.show);
 router.get('/users/:id/edit', users.edit);
 router.post('/users/:id/delete', users.delete);
 
+// Admins API
+router.all('/admin', middlewares.check_admin);
+router.get('/admin', admins.index);
+router.get('/admin/articles/new', articles.new);
+router.post('/admin/articles/new', articles.create);
 
-
+// Articles API
+router.get('/articles/new', articles.new);
 module.exports = router;

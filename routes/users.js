@@ -25,7 +25,7 @@ exports.create = function(req, res, next) {
                 user_id: user.id,
                 username: user.username,
             };
-            res.redirect(301, '/');
+            res.redirect('/');
         });
 };
 
@@ -52,7 +52,7 @@ exports.login = function(req, res, next) {
     }).then(function(user) {
 
         if (user === null) {
-            return res.redirect(301, 'back');
+            return res.redirect('back');
         }
         console.log(user);
         req.session.user = {
@@ -70,7 +70,7 @@ exports.login = function(req, res, next) {
 exports.logout = function(req, res, next) {
     req.session.destroy(function(err) {
         if (err) console.log('session delete error ' + err);
-        res.redirect(301, '/');
+        res.redirect('/');
     });
 
 };

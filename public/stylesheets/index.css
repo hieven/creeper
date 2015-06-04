@@ -5351,3 +5351,8 @@ footer {
   height: 600px; }
   .register form .btn {
     margin-right: 10px; }
+
+#article-form {
+  height: 600px; }
+  #article-form .btn {
+    margin-right: 10px; }

@@ -16,16 +16,15 @@ exports.assign_user = function(req, res, next) {
 };
 
 exports.check_admin = function(req, res, next) {
-  console.log(req.session.user);
-  console.log('chekc admin!!!!!!!');
+
   // User does not login
   if (!req.session.user) {
     console.log('Sorry, you does not login!!!!!!!');
-    return res.redirect(301, '/users/login');
+    return res.redirect('/users/login');
   }
 
   // User does not an admin
-  if (req.session.user.user_id !== 1) {
+  if (req.session.user.user_id !== 4) {
     console.log('Sorry, you are not an admin!!!!!!!');
     return res.redirect(301, '/');
   }

@@ -1,0 +1,23 @@
+extends ../admins/admin_layout
+
+block content
+  #article-form
+    form(method="POST", action="./new")
+      .form-group
+        label(for="#title") 標題: 
+        input.form-control#title(type="text",
+                                 name="title")
+
+      .form-group
+        label(for="#author") 作者:
+        input.form-control#author(type="text",
+                                  name="author")
+
+      .form-group
+        label(for="#content") 內容:
+        input.form-control#content(type="text",
+                                   name="content")
+
+
+      button.btn.btn-azure(type="submit") 新增
+      button.btn.btn-default(type="submit") 取消

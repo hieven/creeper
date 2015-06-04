@@ -12,10 +12,14 @@ block content
         .entry-list
           h2.title 本日頭條
           .timeline
-            .item
-              img.capture(src="", alt="capture")
-              h2.item-title
-              span.item-date
-              span.item-author
-              span.tags
+            each article in articles
+              .item
+                img.capture(src="", alt="capture")
+                h2.item-title
+                  = article.title
+                span.item-date
+                  = article.createdAt
+                span.item-author
+                  = article.author
+                span.tags
       .right-section
