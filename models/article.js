@@ -2,6 +2,7 @@ module.exports = function(sequelize, DataTypes) {
   var Article = sequelize.define('article', {
     title: DataTypes.STRING,
     author: DataTypes.STRING,
+    caption: DataTypes.TEXT,
     content: DataTypes.TEXT,
     source: DataTypes.TEXT,
     level: DataTypes.INTEGER,
