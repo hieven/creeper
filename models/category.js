@@ -4,7 +4,9 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        Category.hasMany(models.article);
+        Category.hasMany(models.article, {
+          foreignKey: 'categoryId'
+        });
       }
     }
   });

@@ -1,4 +1,5 @@
 var express = require('express');
+var _ = require('lodash');
 var router = express.Router();
 var Article = require('../models').article;
 var Category = require('../models').category;
@@ -7,16 +8,20 @@ var categories = require('../config/category_list');
 // Get all articles by category
 exports.index = function(req, res, next) {
   var category = req.params.category;
-  console.log(Category);
-  Category.getArticles()
+  Article.findAll({
+      include: [{
+        model: Category,
+        where: {
+          name: category
+        }
+      }]
+    })
     .then(function(articles) {
 
-      console.log(articles);
-
-      res.json({
+      res.render('./articles/index', {
+        category: category,
         articles: articles
       });
-      //res.render('./articles/new');
     });
 };
 
@@ -33,6 +38,7 @@ exports.new = function(req, res, next) {
 exports.create = function(req, res, next) {
   var body = req.body;
   body.seen = 0;
+  body.caption = _(body.content).split(' ').take(50).value().join(' ');
   Article.create(body)
     .then(function(article) {
       res.redirect('/admin');

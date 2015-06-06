@@ -1,0 +1,31 @@
+extends ../layout
+
+block content
+
+  #article-container
+    .row
+      h1= category
+    .row
+      #main-col
+        ul#timeline
+
+          each article in articles
+            li.item
+              .thumbnail
+                img.capture(src="../images/no_photo.jpg", alt="capture")
+              .detail
+                h3.item-title
+                  = article.title
+                span.item-date
+                  i.fa.fa-calendar
+                  = article.createdAt.toLocaleDateString()
+                span.item-author
+                  i.fa.fa-user
+                  = article.author
+                span.item-tags
+                  i.fa.fa-tags
+
+                .content
+                  = article.caption
+                  | ...
+                btn.btn.btn-azure-outline 閱讀更多

@@ -25,7 +25,7 @@ app.use(
   sassMiddleware({
     src: __dirname + '/scss', //where the sass files are 
     dest: __dirname + '/public', //where css should go
-    debug: true // obvious
+    debug: false // obvious
   })
 );
 
