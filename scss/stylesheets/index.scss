@@ -17,18 +17,20 @@ body {
   width:      100%;
   position:   relative;
   max-height: 660px;
+  min-height: 300px;
   overflow:   hidden;
   color:      white;
   
   #header-bg {
-    width:     100%;
-    max-width: 100%;
-    height:    auto;
+    width:      100%;
+    max-width:  100%;
+    min-height: 300px;
+    height:     auto;
   }
 
   .caption {
     @extend .col-md-5;
-    @extend .col-sm-6;
+    @extend .col-sm-7;
     @extend .col-xs-9;
 
     position: absolute;
@@ -60,6 +62,25 @@ body {
     }
   }
 }
+
+// Timeline
+.left-section {
+  @extend .container;
+  #timeline {
+    @extend .row;
+    .item {
+      @extend .col-md-3;
+
+      .capture {
+        max-width:     300px;
+        border-radius: $M/2;
+      }
+    }
+
+  }
+
+}
+
 
 // Footer
 footer {

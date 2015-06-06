@@ -9,3 +9,24 @@
     border-color:     $azure-hover-color;
   }
 }
+
+.navbar-inverse {
+  background-color: rgba(48, 48, 48, 0.88);
+  border: 0;
+
+  & .navbar-nav > li > a:hover {
+    color: $azure-color;
+  }
+
+  .dropdown-menu {
+    background-color: rgba(48, 48, 48, 0.88);
+
+    li > a {
+      color: white;
+
+      &:hover {
+        background-color: $azure-color;
+      }
+    }
+  }
+}

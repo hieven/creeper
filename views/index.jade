@@ -19,10 +19,10 @@ block content
       .left-section
         .entry-list
           h2.title 本日頭條
-          .timeline
+          #timeline
             each article in articles
               .item
-                img.capture(src="", alt="capture")
+                img.capture(src="../images/no_photo.jpg", alt="capture")
                 h2.item-title
                   = article.title
                 span.item-date
