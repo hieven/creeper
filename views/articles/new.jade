@@ -4,19 +4,29 @@ block content
   #article-form
     form(method="POST", action="./new")
       .form-group
-        label(for="#title") 標題: 
+        label(for="title") 標題: 
         input.form-control#title(type="text",
                                  name="title")
 
       .form-group
-        label(for="#author") 作者:
+        label(for="author") 作者:
         input.form-control#author(type="text",
                                   name="author")
 
       .form-group
-        label(for="#content") 內容:
-        input.form-control#content(type="text",
-                                   name="content")
+        label(for="content") 內容:
+        textarea.form-control#content(name="content", cols="30", rows="10")
+
+      .form-group
+        label(for="source") 來源:
+        input.form-control#source(type="text",
+                                   name="source")
+
+      .form-group
+        label(for="category") 類別:
+        select.form-control#category(name="categoryId")
+          each category, cid in categories
+            option(value=cid+1)= category
 
 
       button.btn.btn-azure(type="submit") 新增

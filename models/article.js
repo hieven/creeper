@@ -3,11 +3,16 @@ module.exports = function(sequelize, DataTypes) {
     title: DataTypes.STRING,
     author: DataTypes.STRING,
     content: DataTypes.TEXT,
-    seen: DataTypes.INTEGER
+    source: DataTypes.TEXT,
+    level: DataTypes.INTEGER,
+    length: DataTypes.INTEGER,
+    seen: DataTypes.INTEGER,
+    categoryId: DataTypes.INTEGER,
+    status: DataTypes.TEXT
   }, {
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
+        Article.belongsTo(models.category);
       }
     }
   });

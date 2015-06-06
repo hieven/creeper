@@ -33,5 +33,5 @@ router.get('/admin/articles/new', articles.new);
 router.post('/admin/articles/new', articles.create);
 
 // Articles API
-router.get('/articles/new', articles.new);
+router.get('/articles/:category', articles.index);
 module.exports = router;

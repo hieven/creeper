@@ -22,9 +22,10 @@
     background-color: rgba(48, 48, 48, 0.88);
 
     li > a {
-      color: white;
+      color: #9d9d9d;
 
       &:hover {
+        color:            white;
         background-color: $azure-color;
       }
     }
