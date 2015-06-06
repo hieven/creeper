@@ -4,13 +4,61 @@
 
 // Global setting
 body {
-  padding-top:      60px;
-  background:       url('../images/bg.jpg') 0 0 repeat #f2f2f2;
+  padding-top: 70px;
+  background:  url('../images/bg.jpg') 0 0 repeat #f2f2f2;
+}
+
+ .navbar + #header{
+  margin-top: -70px;
 }
 
 // Header
-header {
-  background-image: url('../images/header.jpg');
+#header {
+  width:      100%;
+  position:   relative;
+  max-height: 660px;
+  overflow:   hidden;
+  color:      white;
+  
+  #header-bg {
+    width:     100%;
+    max-width: 100%;
+    height:    auto;
+  }
+
+  .caption {
+    @extend .col-md-5;
+    @extend .col-sm-6;
+    @extend .col-xs-9;
+
+    position: absolute;
+    top: $M*10;
+
+    @media screen and (max-width: $MAX-XS) {
+      top: $M*7;
+      h1 { font-size: 22px; }
+    }
+  }
+
+  #header-btn {
+    position: absolute;
+    padding:  0 15px;
+    bottom:   $M*18;
+    z-index:  0;
+    
+    @media screen and (max-width: $MAX-XS) {
+      bottom:    $M*4;
+      
+      .btn {
+        font-size: 14px;
+      }
+    }
+
+
+    .btn {
+      margin-right: $M*2;
+    }
+  }
 }
 
 // Footer

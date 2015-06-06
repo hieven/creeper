@@ -2,5 +2,62 @@
 $azure-color:       #11A8AB;
 $azure-hover-color: #0D989B;
 
+
+// Media Query
+$MAX-MD:            1199px;
+$MAX-SM:            991px;
+$MAX-XS:            767px;
+
+$MIN-LG:            $MAX-MD+1;
+$MIN-MD:            $MAX-SM+1;
+$MIN-SM:            $MAX-XS+1;
+
 $M: 10px;
 
+
+// Button style
+
+@mixin btn-default-outline($color) {
+  position:         relative;
+  background-color: transparent;
+  border-color:     $color;
+  color:            white;
+
+  &:hover {
+    color: white;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    background-color: $color;
+    top:     0;
+    left:    0;
+    height:  100%;
+    width:   0;
+    z-index: -1;
+  }
+
+  &:hover::before {
+    width:      100%;
+    transition: height, 0.4s;
+  }
+}
+
+.btn-default-outline {
+  @include btn-default-outline(white);
+
+  &:hover {
+    color: black;
+    transition: color, 0.4s;
+  }
+}
+
+.btn-azure-outline {
+  @include btn-default-outline($azure-color);
+}
+
+// Button size
+.btn-slim {
+  padding: $M/2 $M*3;
+}
