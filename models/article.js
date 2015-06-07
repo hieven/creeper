@@ -13,10 +13,18 @@ module.exports = function(sequelize, DataTypes) {
       unique: true
     },
     seen: DataTypes.INTEGER,
-    time: DataTypes.DATE,
+    time: DataTypes.STRING,
     categoryId: DataTypes.INTEGER,
-    sourceId: DataTypes.INTEGER,
-    status: DataTypes.INTEGER
+    articleSourceId: DataTypes.INTEGER,
+    status: DataTypes.INTEGER,
+    createdAt: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW
+    }
   }, {
     classMethods: {
       associate: function(models) {
