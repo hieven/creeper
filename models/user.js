@@ -16,6 +16,9 @@ module.exports = function(sequelize, DataTypes) {
     password: {
       type: DataTypes.STRING,
     },
+    level: {
+      type: DataTypes.INTEGER,
+    },
     createdAt: {
       type: DataTypes.DATE
     },
@@ -25,7 +28,10 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
+        User.hasMany(models.favorite);
+        User.hasMany(models.subscription);
+        User.hasMany(models.articleHistory);
+        User.hasMany(models.wordCollection);
       }
     }
   });

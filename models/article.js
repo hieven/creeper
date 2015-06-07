@@ -13,12 +13,15 @@ module.exports = function(sequelize, DataTypes) {
     time: DataTypes.DATE,
     categoryId: DataTypes.INTEGER,
     sourceId: DataTypes.INTEGER,
-    status: DataTypes.TEXT
+    status: DataTypes.INTEGER
   }, {
     classMethods: {
       associate: function(models) {
         Article.belongsTo(models.category);
         Article.belongsTo(models.articleSource);
+        Article.hasMany(models.favorite);
+        Article.hasMany(models.subscription);
+        Article.hasMany(models.articleHistory);
       }
     }
   });
