@@ -8,7 +8,10 @@ module.exports = function(sequelize, DataTypes) {
     level: DataTypes.INTEGER,
     wordCount: DataTypes.INTEGER,
     image: DataTypes.STRING,
-    url: DataTypes.STRING,
+    url: {
+      type: DataTypes.STRING,
+      unique: true
+    },
     seen: DataTypes.INTEGER,
     time: DataTypes.DATE,
     categoryId: DataTypes.INTEGER,
