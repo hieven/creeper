@@ -1,14 +1,14 @@
 module.exports = function(sequelize, DataTypes) {
-  var Source = sequelize.define('source', {
+  var Article_source = sequelize.define('article_source', {
     name: DataTypes.STRING,
     url: DataTypes.STRING,
     
   }, {
     classMethods: {
       associate: function(models) {
-        Source.hasMany(models.article);
+        Article_source.hasMany(models.article);
       }
     }
   });
-  return Source;
+  return Article_source;
 };
