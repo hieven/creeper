@@ -5,8 +5,9 @@ var Article = require('../models').article;
  ************************************************/
 exports.index = function(req, res) {
   Article.findAll().then(function(articles) {
-
+    var headerImage = middlewares.s3Image('header.jpg');
     res.render('index', {
+      headerImage: headerImage,
       articles: articles
     });
   });

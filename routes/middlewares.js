@@ -1,4 +1,11 @@
 var User = require('../models').User;
+var config = require('../config/local');
+var AWS = require('aws-sdk');
+var s3 = new AWS.S3();
+AWS.config.update({
+  accessKeyId: config.aws.accessKey,
+  secretAccessKey: config.aws.secretKey
+});
 
 exports.assign_user = function(req, res, next) {
   var user = null;
@@ -30,4 +37,12 @@ exports.check_admin = function(req, res, next) {
   }
 
   next();
+};
+
+// Below are just lots of normal functions used everywhere.
+exports.s3Image = function(object) {
+  var url = 'https://' + config.aws.region + '.amazonaws.com/' + config.aws.bucket;
+  url += '/website-photo/';
+  url += object;
+  return url;
 };
