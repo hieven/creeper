@@ -1,5 +1,6 @@
 var User = require('../models').User;
 var config = require('../config/local');
+var categoryList = require('../config/category_list');
 var AWS = require('aws-sdk');
 var s3 = new AWS.S3();
 AWS.config.update({
@@ -19,6 +20,12 @@ exports.assign_user = function(req, res, next) {
   }
 
   res.locals.user = user;
+  next();
+};
+
+exports.assign_category = function(req, res, next) {
+  res.locals.categoryList = categoryList.category;
+  res.locals.categoryZh = categoryList.zh;
   next();
 };
 

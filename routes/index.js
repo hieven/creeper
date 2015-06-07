@@ -9,7 +9,7 @@ var articles = require('./articles');
 
 // General API
 router.get('*', middlewares.assign_user);
-
+router.get('*', middlewares.assign_category);
 
 // Get Home page
 router.get('/', home.index);

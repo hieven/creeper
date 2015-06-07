@@ -20,14 +20,9 @@ nav.navbar.navbar-inverse.navbar-fixed-top
             |各類魚貨
             span.caret
           ul.dropdown-menu(role="menu")
-            li
-              a(href="/articles/tech") 科技
-            li
-              a(href="/articles/medicine") 醫學
-            li
-              a(href="/articles/environment") 環境
-            li
-              a(href="/articles/education") 教育
+            each category, index in categoryList
+              li
+                a(href="/articles/#{category}")= categoryZh[index]
         li
           a(href="#") 精選漁貨
         li
@@ -44,7 +39,7 @@ nav.navbar.navbar-inverse.navbar-fixed-top
               span.caret
             ul.dropdown-menu(role="menu")
               li
-                a(href="#") 設定
+                a(href="/users/#{user.user_id}/edit") 設定
               li
                 a(href="/users/logout") 登出
         - else
