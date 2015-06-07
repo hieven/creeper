@@ -1,6 +1,7 @@
 // Global variables
-$azure-color:       #11A8AB;
-$azure-hover-color: #0D989B;
+$azure-color:        #11A8AB;
+$azure-hover-color:  #0D989B;
+$light-yellow-color: #f1f0e3;
 
 
 // Media Query
@@ -28,9 +29,10 @@ $M: 10px;
   }
 
   &::before {
-    content: '';
-    position: absolute;
+    content:          '';
+    position:         absolute;
     background-color: $color;
+    border-radius:    5px;
     top:     0;
     left:    0;
     height:  100%;
@@ -40,7 +42,7 @@ $M: 10px;
 
   &:hover::before {
     width:      100%;
-    transition: height, 0.4s;
+    transition: width, 0.4s;
   }
 }
 
@@ -48,7 +50,7 @@ $M: 10px;
   @include btn-default-outline(white);
 
   &:hover {
-    color: black;
+    color:      black;
     transition: color, 0.4s;
   }
 }

@@ -8,6 +8,24 @@
     background-color: $azure-hover-color;
     border-color:     $azure-hover-color;
   }
+
+  &:focus {
+    @extend .active;
+    color:  white;
+  }
+}
+
+.btn-link {
+  color: $azure-hover-color;
+
+
+  &:hover {
+    color: $azure-hover-color;
+  }
+
+  &:focus {
+    color: $azure-hover-color; 
+  }
 }
 
 .navbar-inverse {

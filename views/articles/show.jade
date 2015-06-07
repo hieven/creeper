@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+
+  #article-show
+    .panel.panel-default
+      .panel-heading
+        h3= article.title
+      .panel-body
+        img.capture(src="/images/no_photo.jpg", alt="capture")
+        p= article.content
+        button.btn.btn-azure 閱讀完成

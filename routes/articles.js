@@ -47,11 +47,30 @@ exports.create = function(req, res, next) {
 
 // Show
 exports.show = function(req, res, next) {
+  var aid = req.params.id;
+  var category = req.params.category;
 
+  Article.findOne({
+      where: {
+        id: aid
+      },
+      include: [{
+        model: Category,
+        where: {
+          name: category
+        }
+      }]
+    })
+    .then(function(article) {
 
-  res.json({
-    status: 'succeed',
-    articles: articles
-  });
-  //res.render('./articles/new');
+      /*res.json({
+        article: article
+      });*/
+
+      res.render('./articles/show', {
+        article: article
+      });
+      // Increase article seen count
+      article.increment('seen').then();
+    });
 };

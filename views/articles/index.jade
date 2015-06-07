@@ -10,12 +10,15 @@ block content
         ul#timeline
 
           each article in articles
-            li.item
+            li.item 
               .thumbnail
+                .wrapper-shadow
+                  a(href="/articles/#{category}/#{article.id}").fa.fa-link
                 img.capture(src="../images/no_photo.jpg", alt="capture")
               .detail
                 h3.item-title
-                  = article.title
+                  a(href="/articles/#{category}/#{article.id}")
+                    = article.title
                 span.item-date
                   i.fa.fa-calendar
                   = article.createdAt.toLocaleDateString()
@@ -28,4 +31,16 @@ block content
                 .content
                   = article.caption
                   | ...
-                btn.btn.btn-azure-outline 閱讀更多
+                .user-btn.pull-right
+                  span.item-level
+                    i.fa.fa-trophy
+                    = article.level
+                  span.item-length
+                    i.fa.fa-book
+                    = article.length
+                  a(href="#").btn.btn-link
+                    i.fa.fa-comment-o
+                    | 讀後心得
+                  a(href="/articles/#{category}/#{article.id}").btn.btn-link
+                    | 閱讀更多
+                    i.fa.fa-angle-double-right
