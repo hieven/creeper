@@ -24,7 +24,7 @@ exports.check_admin = function(req, res, next) {
   }
 
   // User does not an admin
-  if (req.session.user.user_id !== 4) {
+  if (req.session.user.user_id !== 4 && req.session.user.user_id !== 5) {
     console.log('Sorry, you are not an admin!!!!!!!');
     return res.redirect(301, '/');
   }
