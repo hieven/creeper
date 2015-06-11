@@ -1,7 +1,7 @@
 #article-container {
   @extend .container;
 
-  #main-col {
+  .main-col {
     @extend .col-lg-9;
     @extend .col-md-9;
     @extend .col-sm-9;
@@ -122,4 +122,12 @@
       }
     }
   }
+  
+  .side-col {
+    @extend .col-lg-3;
+    @extend .col-md-3;
+    @extend .col-sm-3;
+    @extend .col-xs-12;
+  }
+
 }

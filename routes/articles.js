@@ -1,13 +1,16 @@
 var express = require('express');
 var _ = require('lodash');
 var router = express.Router();
-var Article = require('../models').article;
-var Category = require('../models').category;
 var middlewares = require('./middlewares');
 var categories = require('../config/category_list');
+var Article = require('../models').article;
+var Category = require('../models').category;
+
+
 // Get all articles by category
 exports.index = function(req, res, next) {
   var category = req.params.category;
+  var noPhoto = middlewares.s3Image('no_photo.jpg');
   Article.findAll({
       include: [{
         model: Category,
@@ -20,7 +23,8 @@ exports.index = function(req, res, next) {
 
       res.render('./articles/index', {
         category: category,
-        articles: articles
+        articles: articles,
+        noPhoto: noPhoto
       });
     });
 };
@@ -67,10 +71,11 @@ exports.show = function(req, res, next) {
         article: article
       });*/
 
+
       res.render('./articles/show', {
         article: article
       });
       // Increase article seen count
-      article.increment('seen').then();
+      article.increment('seen');
     });
 };

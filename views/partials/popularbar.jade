@@ -1,0 +1,19 @@
+.popular-container
+  h3 精選漁貨
+  ul.popular-panel
+    each article in popularArticles
+      li.popular-item
+        a.btn-azure-hover(href="/articles/#{category}/#{article.id}")
+          .thumbnail
+            .wrapper-shadow
+              a(href="/articles/#{category}/#{article.id}").fa.fa-link
+            img(src="#{noPhoto}", alt="")
+        
+
+
+
+
+          h6= article.title
+          span.item-date
+            i.fa.fa-calendar
+            | 5 days ago

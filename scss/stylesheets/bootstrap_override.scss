@@ -28,6 +28,20 @@
   }
 }
 
+.btn-azure-hover {
+  color:           rgb(51, 51, 51);
+  text-decoration: none;
+
+  &:hover {
+    color:      $azure-hover-color;
+    transition: color 0.3s;
+  }
+
+  &:focus {
+    color: $azure-hover-color; 
+  }
+}
+
 .navbar-inverse {
   background-color: rgba(48, 48, 48, 0.88);
   border: 0;

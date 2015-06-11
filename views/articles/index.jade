@@ -6,7 +6,7 @@ block content
     .row
       h1= category
     .row
-      #main-col
+      .main-col
         ul#timeline
 
           each article in articles
@@ -14,14 +14,14 @@ block content
               .thumbnail
                 .wrapper-shadow
                   a(href="/articles/#{category}/#{article.id}").fa.fa-link
-                img.capture(src="../images/no_photo.jpg", alt="capture")
+                img.capture(src="#{noPhoto}", alt="capture")
               .detail
                 h3.item-title
                   a(href="/articles/#{category}/#{article.id}")
                     = article.title
                 span.item-date
                   i.fa.fa-calendar
-                  = article.createdAt.toLocaleDateString()
+                  = article.time
                 span.item-author
                   i.fa.fa-user
                   = article.author
@@ -44,3 +44,5 @@ block content
                   a(href="/articles/#{category}/#{article.id}").btn.btn-link
                     | 閱讀更多
                     i.fa.fa-angle-double-right
+      .side-col
+        include ../partials/popularbar
