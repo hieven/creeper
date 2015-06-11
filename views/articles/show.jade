@@ -5,8 +5,18 @@ block content
   #article-show
     .panel.panel-default
       .panel-heading
-        h3= article.title
+        h3 #{article.title}
       .panel-body
         img.capture(src="/images/no_photo.jpg", alt="capture")
-        p= article.content
+
+        .content
+          !{article.content}
         button.btn.btn-azure 閱讀完成
+  #search-result.animated.hide
+    button.close.pull-right(type="button", aria-label="Close")
+      span(aria-hidden="true")
+        | &times;
+    p.result
+    button.btn.btn-azure.pull-right 加入魚譜
+append bottom
+  script(src="/javascripts/articles/show.js")

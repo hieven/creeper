@@ -19,5 +19,11 @@ module.exports = {
     secretKey: 'SECRETKEY',
     bucket: 'BUCKET',
     region: 'REGION',
+  },
+
+  // You can bascially look up the youdao website for more detail.
+  youdao: {
+    accessKey: 'ACCESSKEY',
+    keyFrom: 'CREEPER'
   }
 };
