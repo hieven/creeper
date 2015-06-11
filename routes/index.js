@@ -5,7 +5,7 @@ var home = require('./home');
 var users = require('./users');
 var admins = require('./admins');
 var articles = require('./articles');
-
+var vocabs = require('./vocabs');
 
 // General API
 router.get('*', middlewares.assign_user);
@@ -33,6 +33,12 @@ router.get('/admin/articles/new', articles.new);
 router.post('/admin/articles/new', articles.create);
 
 // Articles API
-router.get('/articles/:category', articles.index);
-router.get('/articles/:category/:id', articles.show);
+router.get('/articles/:category', middlewares.assign_popular, articles.index);
+router.get('/articles/:category/:id', middlewares.updateHistory, articles.show);
+
+
+// Vocabs API
+router.post('/vocabs/:vocab/search', vocabs.search);
+
+
 module.exports = router;
