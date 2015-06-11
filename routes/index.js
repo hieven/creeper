@@ -33,8 +33,10 @@ router.get('/admin/articles/new', articles.new);
 router.post('/admin/articles/new', articles.create);
 
 // Articles API
+router.get('/articles/history', articles.history);
 router.get('/articles/:category', middlewares.assign_popular, articles.index);
 router.get('/articles/:category/:id', middlewares.updateHistory, articles.show);
+
 
 
 // Vocabs API

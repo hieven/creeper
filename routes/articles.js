@@ -4,6 +4,7 @@ var router = express.Router();
 var middlewares = require('./middlewares');
 var categories = require('../config/category_list');
 var Article = require('../models').article;
+var User = require('../models').user;
 var Category = require('../models').category;
 
 
@@ -17,7 +18,8 @@ exports.index = function(req, res, next) {
         where: {
           name: category
         }
-      }]
+      }],
+      order: 'createdAt DESC'
     })
     .then(function(articles) {
 
@@ -77,5 +79,22 @@ exports.show = function(req, res, next) {
       });
       // Increase article seen count
       article.increment('seen');
+    });
+};
+
+// History
+exports.history = function(req, res, next) {
+  var user_id = req.session.user.user_id;
+
+  User.findById(user_id)
+    .then(function(user) {
+      return user.getArticles({
+        order: 'createdAt DESC'
+      });
+    })
+    .then(function(articles) {
+      res.render('./articles/history', {
+        articles: articles
+      });
     });
 };

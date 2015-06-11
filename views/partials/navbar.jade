@@ -17,7 +17,7 @@ nav.navbar.navbar-inverse.navbar-fixed-top
                             data-toggle="dropdown",
                             role="button",
                             aria-expanded="false")
-            |各類魚貨
+            | 各類魚貨
             span.caret
           ul.dropdown-menu(role="menu")
             each category, index in categoryList
@@ -38,6 +38,8 @@ nav.navbar.navbar-inverse.navbar-fixed-top
                               aria-expanded="false")= user.username
               span.caret
             ul.dropdown-menu(role="menu")
+              li
+                a(href="/articles/history") 歷史紀錄
               li
                 a(href="/users/#{user.user_id}/edit") 設定
               li

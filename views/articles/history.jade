@@ -1,0 +1,25 @@
+extends ../layout
+
+block content
+
+  //- Articles History
+  #history-container
+    .row
+      .articles-panel
+        table.articles
+          thead
+            tr
+              th 標題
+              th 簡述
+              th 狀態
+          tbody
+            each article in articles
+              tr.article
+                td= article.title
+                td= article.caption
+                - if (article.articleHistory.isDone)
+                  td.status 
+                    a.text-primary(href="#") 完成
+                - else
+                  td.status
+                    a.text-danger(href="#") 閱讀中
