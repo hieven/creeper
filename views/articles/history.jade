@@ -15,8 +15,8 @@ block content
           tbody
             each article in articles
               tr.article
-                td= article.title
-                td= article.caption
+                td.title= article.title
+                td.caption= article.caption
                 - if (article.articleHistory.isDone)
                   td.status 
                     a.text-primary(href="#") 完成

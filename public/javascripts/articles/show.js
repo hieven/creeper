@@ -1,6 +1,6 @@
 (function() {
 
-
+  // Search vocab click
   $('.panel-body span').click(function() {
     var text = $(this).text();
     var url = '/vocabs/' + text + '/search';
@@ -24,10 +24,29 @@
       });
   });
 
+  // Search result collapse
   $('#search-result .close').click(function() {
     $('#search-result').removeClass('slideInUp');
     $('#search-result').addClass('slideOutDown');
 
+  });
+
+
+  // Complete reading
+  $('#complete-btn').click(function() {
+    var category = $(this).data('category');
+    var article_id = $(this).data('article-id');
+    var url = '/articles/' + category + '/' + article_id + '/complete';
+
+    $.ajax({
+        method: "POST",
+        url: url,
+      })
+      .done(function(res) {
+        if (res.status === true) {
+          window.location = '/';
+        }
+      });
   });
 
 })();

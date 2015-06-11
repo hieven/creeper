@@ -11,7 +11,10 @@ block content
 
         .content
           !{article.content}
-        button.btn.btn-azure 閱讀完成
+        - if (user)
+          button#complete-btn.btn.btn-azure(data-article-id="#{article.id}",
+                                            data-category="#{article.category.dataValues.name}") 
+            | 閱讀完成
   #search-result.animated.hide
     button.close.pull-right(type="button", aria-label="Close")
       span(aria-hidden="true")

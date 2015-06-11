@@ -6,7 +6,7 @@ var categories = require('../config/category_list');
 var Article = require('../models').article;
 var User = require('../models').user;
 var Category = require('../models').category;
-
+var ArticleHistory = require('../models').articleHistory;
 
 // Get all articles by category
 exports.index = function(req, res, next) {
@@ -97,4 +97,29 @@ exports.history = function(req, res, next) {
         articles: articles
       });
     });
+};
+
+// Complete
+exports.complete = function(req, res, next) {
+  var user_id = req.session.user.user_id;
+  var article_id = req.params.id;
+
+  ArticleHistory.findOne({
+      where: {
+        userId: user_id,
+        articleId: article_id
+      }
+    })
+    .then(function(articleHistory) {
+      console.log(articleHistory);
+      return articleHistory.update({
+        isDone: true
+      });
+    })
+    .then(function() {
+      res.json({
+        status: true
+      });
+    });
+
 };
