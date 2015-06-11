@@ -32,7 +32,7 @@ module.exports = function(sequelize, DataTypes) {
         Article.belongsTo(models.articleSource);
         Article.hasMany(models.favorite);
         Article.hasMany(models.subscription);
-
+        Article.hasMany(models.comment);
         Article.belongsToMany(models.user, {
           through: models.articleHistory
         });

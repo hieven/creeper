@@ -99,11 +99,13 @@ exports.show = function(req, res, next) {
  **  EDIT
  ************************************************/
 exports.edit = function(req, res, next) {
-    var member = middlewares.assign_user(req);
     var body = req.body;
-    res.json({
-        status: 'succeed'
-    });
+
+
+
+    /*res.json({
+        body: body
+    });*/
 };
 
 

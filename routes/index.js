@@ -38,10 +38,13 @@ router.get('/articles/:category', middlewares.assign_popular, articles.index);
 router.get('/articles/:category/:id', middlewares.updateHistory, articles.show);
 router.post('/articles/:category/:id/complete', articles.complete);
 
-
+// Comment API
+router.get('/articles/:category/:id/comments', comments.show);
+router.post('/articles/:category/:id/comments/create', comments.create);
 
 // Vocabs API
 router.post('/vocabs/:vocab/search', vocabs.search);
+
 
 
 module.exports = router;
