@@ -6,6 +6,7 @@ var users = require('./users');
 var admins = require('./admins');
 var articles = require('./articles');
 var vocabs = require('./vocabs');
+var comments = require('./comments');
 
 // General API
 router.get('*', middlewares.assign_user);
@@ -40,7 +41,7 @@ router.post('/articles/:category/:id/complete', articles.complete);
 
 // Comment API
 router.get('/articles/:category/:id/comments', comments.show);
-router.post('/articles/:category/:id/comments/create', comments.create);
+router.post('/articles/:category/:id/comments', comments.create);
 
 // Vocabs API
 router.post('/vocabs/:vocab/search', vocabs.search);

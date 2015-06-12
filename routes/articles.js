@@ -111,7 +111,6 @@ exports.complete = function(req, res, next) {
       }
     })
     .then(function(articleHistory) {
-      console.log(articleHistory);
       return articleHistory.update({
         isDone: true
       });

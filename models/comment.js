@@ -9,7 +9,8 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.TEXT,
     },
     like_count: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      defaultValue: 0
     },
     articleId: {
       type: DataTypes.INTEGER,
