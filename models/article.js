@@ -4,7 +4,6 @@ module.exports = function(sequelize, DataTypes) {
     author: DataTypes.STRING,
     caption: DataTypes.TEXT,
     content: DataTypes.TEXT,
-    source: DataTypes.TEXT,
     level: DataTypes.INTEGER,
     wordCount: DataTypes.INTEGER,
     image: DataTypes.STRING,
@@ -12,11 +11,17 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       unique: true
     },
-    seen: DataTypes.INTEGER,
+    seen: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
     time: DataTypes.STRING,
     categoryId: DataTypes.INTEGER,
     articleSourceId: DataTypes.INTEGER,
-    status: DataTypes.INTEGER,
+    status: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
     createdAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW
