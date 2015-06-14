@@ -4,20 +4,29 @@
      "password": "PASSWORD",
      "database": "DATABASE",
      "host": "127.0.0.1",
-     "dialect": "mysql"
+     "dialect": "mysql",
+     "define": {
+       "charset": "utf8"
+     }
    },
    "test": {
      "username": "USERNAME",
      "password": "PASSWORD",
      "database": "DATABASE",
      "host": "127.0.0.1",
-     "dialect": "mysql"
+     "dialect": "mysql",
+     "define": {
+       "charset": "utf8"
+     }
    },
    "production": {
      "username": "USERNAME",
      "password": "PASSWORD",
      "database": "DATABASE",
      "host": "127.0.0.1",
-     "dialect": "mysql"
+     "dialect": "mysql",
+     "define": {
+       "charset": "utf8"
+     }
    }
  }
