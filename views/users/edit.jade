@@ -1,0 +1,22 @@
+extends ../layout
+
+
+block content
+  .container
+    .register
+      form(method="POST", action=".")
+        .form-group
+          label(for="#email") 信箱: 
+          input.form-control#email(type="email",
+                                   name="email",
+                                   placeholder="XXX@XYZ.com")
+
+        .form-group
+          label(for="#password") 密碼:
+          input.form-control#password(type="password",
+                                      name="password",
+                                      placeholder="至少輸入 6 碼")
+
+
+        button.btn.btn-azure(type="submit") 登入
+        button.btn.btn-default(type="submit") 取消

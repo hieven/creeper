@@ -29,16 +29,18 @@ block content
       .recommend-list
 
         h4 試著挑戰 
-        each recommendArticle in recommendArticles
 
-          .recommend-article
-            .thumbnail
-              .wrapper-shadow
-                a(href="/articles/#{recommendArticle.category.name}/#{recommendArticle.id}").fa.fa-link.fa-2x
-              img.capture(src="#{noPhoto}", alt="capture")
-            h4.title
-              a(href="/articles/#{recommendArticle.category.name}/#{recommendArticle.id}")= recommendArticle.title
-            p.caption
-              a(href="/articles/#{recommendArticle.category.name}/#{recommendArticle.id}")= recommendArticle.caption
+        if recommendArticles
+          each recommendArticle in recommendArticles
 
-  
+            .recommend-article
+              .thumbnail
+                .wrapper-shadow
+                  a(href="/articles/#{recommendArticle.category.name}/#{recommendArticle.id}").fa.fa-link.fa-2x
+                img.capture(src="#{noPhoto}", alt="capture")
+              h4.title
+                a(href="/articles/#{recommendArticle.category.name}/#{recommendArticle.id}")= recommendArticle.title
+              p.caption
+                a(href="/articles/#{recommendArticle.category.name}/#{recommendArticle.id}")= recommendArticle.caption
+
+    
