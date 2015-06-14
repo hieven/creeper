@@ -1,0 +1,23 @@
+extends ../layout
+
+block content
+
+  //- Articles History
+  #vocab-container
+    .row
+      .vocabs-panel
+        table.vocabs
+          thead
+            tr
+              th 單字
+              th 音標
+              th 解釋
+          tbody
+            each vocab in vocabs
+              tr.vocab
+                td.title= vocab.word
+                td.caption= vocab.kk
+                  td.status
+                    each definition in vocab.definitions
+                      p= definition
+                    

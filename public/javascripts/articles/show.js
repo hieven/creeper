@@ -2,8 +2,8 @@
 
   // Search vocab click
   $('.panel-body span').click(function() {
-    var text = $(this).text();
-    var url = '/vocabs/' + text + '/search';
+    var vocab = $(this).text();
+    var url = '/vocabs/' + vocab + '/search';
 
     $.ajax({
         method: "POST",
@@ -27,11 +27,25 @@
 
   });
 
-
+  // Add word to booklet
   $('#add-vocab').click(function() {
     var vocab = $('.result h4').text();
 
-    console.log(vocab);
+
+    // Send request.
+    var url = '/vocabs/' + vocab;
+    $.ajax({
+        method: "POST",
+        url: url,
+      })
+      .done(function(res) {
+
+        if (res.status === 1) {
+          // TODO: need to have some animation here
+          console.log('success');
+        }
+
+      });
   });
 
   // Complete reading
@@ -45,8 +59,9 @@
         url: url,
       })
       .done(function(res) {
+        console.log(res);
         if (res.status === true) {
-          window.location = '/';
+          window.location = './' + article_id + '/comments';
         }
       });
   });
@@ -62,7 +77,7 @@ function createSearchResult(query, definitions) {
   }
 
   definitions.forEach(function(definition) {
-    str += '<p>' + definition + '</p>';
+    str += '<p class="definition">' + definition + '</p>';
   });
 
   return str;

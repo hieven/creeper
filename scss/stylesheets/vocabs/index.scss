@@ -1,8 +1,8 @@
-#history-container {
+#vocab-container {
   @extend .container;
 
 
-  .articles-panel {
+  .vocabs-panel {
     @extend .col-lg-9;
     @extend .col-md-9;
     
@@ -14,7 +14,7 @@
 
     min-height: 400px;
 
-    .articles {
+    .vocabs {
       @extend .table;
       @extend .table-hover;
 
@@ -23,14 +23,15 @@
         border-bottom: 2px solid $azure-color;
       }
 
-      .article{
+      .vocab {
         list-style: none;
 
         .title, .caption {
-          max-width:     0;
-          overflow:      hidden;
-          text-overflow: ellipsis;
-          white-space:   nowrap;
+          max-width:      0;
+          overflow:       hidden;
+          text-overflow:  ellipsis;
+          vertical-align: middle;
+          white-space:    nowrap;
         }
 
         .status {

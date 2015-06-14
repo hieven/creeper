@@ -44,6 +44,8 @@ router.get('/articles/:category/:id/comments', comments.show);
 router.post('/articles/:category/:id/comments', comments.create);
 
 // Vocabs API
+router.get('/vocabs', vocabs.index);
+router.post('/vocabs/:vocab', vocabs.addVocab);
 router.post('/vocabs/:vocab/search', vocabs.search);
 
 

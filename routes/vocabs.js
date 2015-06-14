@@ -2,6 +2,36 @@ var request = require('request');
 var config = require('../config/local');
 var _ = require('lodash');
 var Word = require('../models').word;
+var User = require('../models').user;
+var WordCollection = require('../models').wordCollection;
+
+
+exports.index = function(req, res, next) {
+  var user_id = req.session.user.user_id;
+
+  User
+    .findById(user_id)
+    .then(function(user) {
+      return user.getWords({
+        attributes: ['word', 'definitions', 'kk']
+      });
+    })
+    .then(function(words) {
+
+      words.forEach(function(word) {
+        try {
+          word.definitions = JSON.parse(word.definitions);
+        } catch (e) {
+          word.definitions = [];
+        }
+      });
+
+
+      res.render('./vocabs/index', {
+        vocabs: words
+      });
+    });
+};
 
 // Search
 exports.search = function(req, res, next) {
@@ -46,17 +76,16 @@ exports.search = function(req, res, next) {
           }
 
           // TODO: add this new vocab into database.
-
           return res.json({
             word: word.query,
-            definitions: word.basic.explains
+            definitions: ((word.basic || {}).explains) || []
           });
         });
 
       } else {
         // Prevent JSON.parse error
         try {
-          word.definitions = JSON.parse(word.definition);
+          word.definitions = JSON.parse(word.definitions);
         } catch (e) {
           word.definitions = [];
         }
@@ -64,6 +93,39 @@ exports.search = function(req, res, next) {
         res.json(word);
       }
 
+    });
+
+
+};
+
+// Add vocab
+exports.addVocab = function(req, res, next) {
+  var user_id = req.session.user.user_id;
+  var vocab = req.params.vocab.toLowerCase();
+  Word
+    .findOne({
+      where: {
+        word: vocab
+      }
+    })
+    .then(function(word) {
+
+      return WordCollection.findOrCreate({
+        where: {
+          userId: user_id,
+          wordId: word.id
+        },
+        defaults: {
+          userId: user_id,
+          wordId: word.id
+        }
+      });
+
+    })
+    .then(function() {
+      res.json({
+        status: 1
+      });
     });
 
 

@@ -4,12 +4,20 @@ var Article = require('../models').article;
  **  GET HOME PAGE
  ************************************************/
 exports.index = function(req, res) {
-  Article.findAll().then(function(articles) {
-    var headerImage = middlewares.s3Image('header.jpg');
-    res.render('index', {
-      headerImage: headerImage,
-      articles: articles
+  Article
+    .findAll({
+      where: {
+        time: {
+          $gte: new Date()
+        }
+      }
+    })
+    .then(function(articles) {
+      var headerImage = middlewares.s3Image('header.jpg');
+      res.render('index', {
+        headerImage: headerImage,
+        articles: articles
+      });
     });
-  });
 
 };
