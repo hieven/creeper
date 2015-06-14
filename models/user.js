@@ -31,11 +31,14 @@ module.exports = function(sequelize, DataTypes) {
         User.hasMany(models.favorite);
         User.hasMany(models.subscription);
         User.hasMany(models.comment);
+
         User.belongsToMany(models.article, {
           through: models.articleHistory
         });
 
-        User.hasMany(models.wordCollection);
+        User.belongsToMany(models.word, {
+          through: models.wordCollection
+        });
       }
     }
   });
