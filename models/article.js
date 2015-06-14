@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       defaultValue: 0
     },
-    time: DataTypes.STRING,
+    time: DataTypes.DATE,
     categoryId: DataTypes.INTEGER,
     articleSourceId: DataTypes.INTEGER,
     status: {
