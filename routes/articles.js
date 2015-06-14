@@ -86,10 +86,15 @@ exports.show = function(req, res, next) {
 exports.history = function(req, res, next) {
   var user_id = req.session.user.user_id;
 
+
   User.findById(user_id)
     .then(function(user) {
       return user.getArticles({
-        order: 'createdAt DESC'
+        order: 'createdAt DESC',
+        include: [{
+          model: Category,
+          attributes: ['name']
+        }]
       });
     })
     .then(function(articles) {
@@ -120,5 +125,4 @@ exports.complete = function(req, res, next) {
         status: true
       });
     });
-
 };
