@@ -11,12 +11,8 @@
       })
       .done(function(res) {
         console.log(res);
-        var vocab = res.vocab;
-        var basic = (vocab.basic || {
-          explains: vocab.translation
-        });
-        console.log(basic);
-        var str = createSearchResult(vocab.query, basic);
+
+        var str = createSearchResult(res.word, res.definitions);
 
         $('#search-result .result').html(str);
         $('#search-result').addClass('slideInUp');
@@ -31,6 +27,12 @@
 
   });
 
+
+  $('#add-vocab').click(function() {
+    var vocab = $('.result h4').text();
+
+    console.log(vocab);
+  });
 
   // Complete reading
   $('#complete-btn').click(function() {
@@ -52,10 +54,15 @@
 })();
 
 
-function createSearchResult(query, basic) {
+function createSearchResult(query, definitions) {
   var str = '<h4>' + query + '</h4>';
-  basic.explains.forEach(function(explain) {
-    str += '<p>' + explain + '</p>';
+
+  if (definitions.length === 0) {
+    return str + '<p>查無此單字</p>';
+  }
+
+  definitions.forEach(function(definition) {
+    str += '<p>' + definition + '</p>';
   });
 
   return str;
