@@ -9,19 +9,36 @@ block content
           .form-group
             label(for="comment-area") 讀後心得：
             textarea#comment-area.form-control(name="body", rows="5")
-            //- TODO: need to tweak the view
             button.btn.btn-azure.btn-slim.pull-right(type="submit") 送出
 
-        each comment in comments
-          .comment
-            .comment-avatar
-              a(href="/users/#{comment.userId}")
-                img.img-circle(src="http://lorempixel.com/g/50/50/people", alt="")
-
-            .comment-wrapper
-              .author-info
+        if comments.length > 0
+          each comment in comments
+            .comment
+              .comment-avatar
                 a(href="/users/#{comment.userId}")
-                  span.author-name= comment.user.username
-              .comment-content= comment.body
+                  img.img-circle(src="http://lorempixel.com/g/50/50/people", alt="")
+
+              .comment-wrapper
+                .author-info
+                  a(href="/users/#{comment.userId}")
+                    span.author-name= comment.user.username
+                .comment-content= comment.body
+        else
+            .no-content 目前還沒有任何留言呦！
+
+      .recommend-list
+
+        h4 試著挑戰 
+        each recommendArticle in recommendArticles
+
+          .recommend-article
+            .thumbnail
+              .wrapper-shadow
+                a(href="/articles/#{recommendArticle.category.name}/#{recommendArticle.id}").fa.fa-link.fa-2x
+              img.capture(src="#{noPhoto}", alt="capture")
+            h4.title
+              a(href="/articles/#{recommendArticle.category.name}/#{recommendArticle.id}")= recommendArticle.title
+            p.caption
+              a(href="/articles/#{recommendArticle.category.name}/#{recommendArticle.id}")= recommendArticle.caption
 
   

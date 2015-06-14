@@ -14,10 +14,18 @@
       line-height:      2;
       background-color: $light-yellow-color;
 
-      .capture {
-        max-width:     300px;
-        border-radius: 6px;
+      .image-wrapper {
+        @extend .text-center;
+        margin-bottom: $M;
+
+        .capture {
+          max-width:     300px;
+          width:         100%;
+          border-radius: 6px;
+        }
       }
+
+        
 
       .content {
 

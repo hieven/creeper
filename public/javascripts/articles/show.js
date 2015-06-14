@@ -1,9 +1,14 @@
 (function() {
-
+  var searched = [];
   // Search vocab click
   $('.panel-body span').click(function() {
     var vocab = $(this).text();
     var url = '/vocabs/' + vocab + '/search';
+
+    // Push vocab into array for recommending article.
+    searched.push(vocab);
+
+    $('#add-vocab').removeClass('disabled');
 
     $.ajax({
         method: "POST",
@@ -40,11 +45,12 @@
       })
       .done(function(res) {
 
-        if (res.status === 1) {
-          // TODO: need to have some animation here
-          console.log('success');
-        }
 
+        // TODO: need to have some animation here
+        console.log('success');
+
+
+        $('#add-vocab').addClass('disabled');
       });
   });
 
@@ -57,6 +63,10 @@
     $.ajax({
         method: "POST",
         url: url,
+        data: {
+          searched: searched
+        }
+
       })
       .done(function(res) {
         console.log(res);

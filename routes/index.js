@@ -35,6 +35,7 @@ router.post('/admin/articles/new', articles.create);
 
 // Articles API
 router.get('/articles/history', articles.history);
+router.get('/articles/random', articles.random);
 router.get('/articles/:category', middlewares.assign_popular, articles.index);
 router.get('/articles/:category/:id', middlewares.updateHistory, articles.show);
 router.post('/articles/:category/:id/complete', articles.complete);

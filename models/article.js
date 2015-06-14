@@ -22,6 +22,9 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       defaultValue: 0
     },
+    easyCnt: DataTypes.INTEGER,
+    hardCnt: DataTypes.INTEGER,
+
     createdAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW

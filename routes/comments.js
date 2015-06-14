@@ -1,5 +1,7 @@
 var Comment = require('../models').comment;
 var User = require('../models').user;
+var middlewares = require('./middlewares');
+
 
 // Create
 exports.create = function(req, res, next) {
@@ -19,6 +21,8 @@ exports.create = function(req, res, next) {
 // Show
 exports.show = function(req, res, next) {
   var article_id = req.params.id;
+  var noPhoto = middlewares.s3Image('no_photo.jpg');
+
 
   Comment
     .findAll({
@@ -33,7 +37,9 @@ exports.show = function(req, res, next) {
     })
     .then(function(comments) {
       res.render('./comments/show', {
-        comments: comments
+        comments: comments,
+        recommendArticles: req.session.recommendArticles,
+        noPhoto: noPhoto
       });
     });
 };

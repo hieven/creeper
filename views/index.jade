@@ -11,7 +11,7 @@ block content
           h1 你還記得多少？
         #header-btn
           a(href="/users/new").btn.btn-azure-outline.btn-lg.btn-slim 成為漁夫
-          a(href="").btn.btn-default-outline.btn-lg.btn-slim 願者上鉤
+          a(href="/articles/random").btn.btn-default-outline.btn-lg.btn-slim 願者上鉤
 
   
   .container
@@ -20,14 +20,23 @@ block content
         .entry-list
           h2.title 本日頭條
           #timeline
-            each article in articles
-              .item
-                img.capture(src="../images/no_photo.jpg", alt="capture")
-                h2.item-title
-                  = article.title
-                span.item-date
-                  = article.createdAt
-                span.item-author
-                  = article.author
-                span.item-tags
+
+            if articles.length > 0
+              each article in articles
+                .item
+                  .thumbnail
+                    .wrapper-shadow
+                      a(href="/articles/#{article.category.name}/#{article.id}").fa.fa-link.fa-2x
+                    if article.image
+                      img.capture(src="#{article.image}", alt="capture")
+                    else
+                      img.capture(src="#{noPhoto}", alt="capture")
+                  h4.title
+                    a(href="/articles/#{article.category.name}/#{article.id}")= article.title
+                  p.caption
+                    a(href="/articles/#{article.category.name}/#{article.id}")= article.caption
+            
+            else
+              .no-content 今天暫時沒有新鮮貨呦！
+
       .right-section

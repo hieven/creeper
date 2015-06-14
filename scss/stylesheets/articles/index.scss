@@ -10,7 +10,7 @@
 
     #timeline {
       list-style: none;
-      
+      padding-left: 0;
       @media screen and (max-width: $MAX-XS) {
         padding: 0 $M;
       }

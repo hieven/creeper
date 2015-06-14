@@ -4,45 +4,48 @@ block content
 
   #article-container
     .row
-      h1= category
+      .col-md-12
+        h1= category
     .row
       .main-col
         ul#timeline
+          
+          if articles.length > 0
+            each article in articles
+              li.item 
+                .thumbnail
+                  .wrapper-shadow
+                    a(href="/articles/#{category}/#{article.id}").fa.fa-link
+                  if article.image
+                    img.capture(src="#{article.image}", alt="capture")
+                  else
+                    img.capture(src="#{noPhoto}", alt="capture")
+                .detail
+                  h3.item-title
+                    a(href="/articles/#{category}/#{article.id}")
+                      = article.title
+                  span.item-date
+                    i.fa.fa-calendar
+                    = article.time
+                  span.item-author
+                    i.fa.fa-user
+                    = article.author
 
-          each article in articles
-            li.item 
-              .thumbnail
-                .wrapper-shadow
-                  a(href="/articles/#{category}/#{article.id}").fa.fa-link
-                img.capture(src="#{noPhoto}", alt="capture")
-              .detail
-                h3.item-title
-                  a(href="/articles/#{category}/#{article.id}")
-                    = article.title
-                span.item-date
-                  i.fa.fa-calendar
-                  = article.time
-                span.item-author
-                  i.fa.fa-user
-                  = article.author
-                span.item-tags
-                  i.fa.fa-tags
-
-                .content
-                  = article.caption
-                  | ...
-                .user-btn.pull-right
-                  span.item-level
-                    i.fa.fa-trophy
-                    = article.level
-                  span.item-length
-                    i.fa.fa-book
-                    = article.length
-                  a(href="/articles/#{category}/#{article.id}/comments").btn.btn-link
-                    i.fa.fa-comment-o
-                    | 讀後心得
-                  a(href="/articles/#{category}/#{article.id}").btn.btn-link
-                    | 閱讀更多
-                    i.fa.fa-angle-double-right
+                  .content
+                    = article.caption
+                    | ...
+                  .user-btn.pull-right
+                    span.item-length
+                      i.fa.fa-book
+                      = article.wordCount
+                    a(href="/articles/#{category}/#{article.id}/comments").btn.btn-link
+                      i.fa.fa-comment-o
+                      | 讀後心得
+                    a(href="/articles/#{category}/#{article.id}").btn.btn-link
+                      | 閱讀更多
+                      i.fa.fa-angle-double-right
+          
+          else
+            .no-content 目前暫時沒有新鮮貨呦
       .side-col
         include ../partials/popularbar
