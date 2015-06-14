@@ -74,7 +74,7 @@ body {
       
       min-height:    400px;
       max-height:    400px;
-      overflow-x:    hidden;
+      overflow:    hidden;
       margin-bottom: $M;
 
       @media screen and (max-width: $MIN-MD) {
