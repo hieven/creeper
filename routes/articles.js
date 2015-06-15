@@ -9,6 +9,7 @@ var Category = require('../models').category;
 var Word = require('../models').word;
 var ArticleHistory = require('../models').articleHistory;
 var Sequelize = require('sequelize');
+
 // Get all articles by category
 exports.index = function(req, res, next) {
   var category = req.params.category;
@@ -110,7 +111,7 @@ exports.history = function(req, res, next) {
 exports.complete = function(req, res, next) {
   var user_id = req.session.user.user_id;
   var article_id = req.params.id;
-
+  var category = req.params.category;
   // All vocabs were searched when user read this article.
   var searched = req.body['searched[]'];
   var article = "";
@@ -154,9 +155,12 @@ exports.complete = function(req, res, next) {
         order: [
           Sequelize.fn('RAND'),
         ],
-        attributes: ['id', 'title', 'author', 'caption', 'time'],
+        attributes: ['id', 'title', 'author', 'caption', 'time', 'image'],
         include: [{
           model: Category,
+          where: {
+            name: category
+          },
           attributes: ['name']
         }]
       });

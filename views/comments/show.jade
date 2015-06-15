@@ -37,7 +37,10 @@ block content
               .thumbnail
                 .wrapper-shadow
                   a(href="/articles/#{recommendArticle.category.name}/#{recommendArticle.id}").fa.fa-link.fa-2x
-                img.capture(src="#{noPhoto}", alt="capture")
+                if recommendArticle.image
+                  img.capture(src="#{recommendArticle.image}", alt="capture")
+                else
+                  img.capture(src="#{noPhoto}", alt="capture")
               h4.title
                 a(href="/articles/#{recommendArticle.category.name}/#{recommendArticle.id}")= recommendArticle.title
               p.caption
