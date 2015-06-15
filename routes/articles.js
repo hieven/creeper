@@ -21,7 +21,8 @@ exports.index = function(req, res, next) {
         model: Category,
         where: {
           name: category
-        }
+        },
+        attributes: ['name', 'zh'],
       }],
       order: 'createdAt DESC'
     })

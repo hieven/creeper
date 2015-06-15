@@ -63,3 +63,28 @@
     }
   }
 }
+
+
+
+.label-others {
+  @extend .label-default;
+}
+.label-technology {
+  @extend .label-primary;
+}
+.label-sport {
+  @extend .label-success;
+}
+.label-world {
+  @extend .label-info;
+}
+.label-entertainment {
+  @extend .label-warning;
+}
+.label-politics {
+  @extend .label-danger;
+}
+
+.label-health {
+  background-color: $azure-color;
+}

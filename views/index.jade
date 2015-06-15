@@ -33,6 +33,8 @@ block content
                       img.capture(src="#{noPhoto}", alt="capture")
                   h4.title
                     a(href="/articles/#{article.category.name}/#{article.id}")= article.title
+                  p.tag
+                    span.label(class="label-#{article.category.name}")= article.category.zh
                   p.caption
                     a(href="/articles/#{article.category.name}/#{article.id}")= article.caption
             

@@ -1,5 +1,5 @@
 .popular-container
-  h3 精選漁貨
+  h3.head-title 精選漁貨
   ul.popular-panel
     each article in popularArticles
       li.popular-item
@@ -7,13 +7,18 @@
           .thumbnail
             .wrapper-shadow
               a(href="/articles/#{category}/#{article.id}").fa.fa-link
-            img(src="#{noPhoto}", alt="")
+            if article.image
+              img(src="#{article.image}", alt="")
+            else
+              img(src="#{noPhoto}", alt="")
         
 
 
 
 
-          h6= article.title
+          h6.title
+            a(href="/articles/#{category}/#{article.id}")= article.title
+          span.label(class="label-#{article.category.name}")= article.category.name
           span.item-date
             i.fa.fa-calendar
-            | 5 days ago
+            = article.time.toLocaleDateString()

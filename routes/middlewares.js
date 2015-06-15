@@ -3,6 +3,7 @@ var config = require('../config/local');
 var categoryList = require('../config/category_list');
 var adminList = require('../config/admin');
 var Article = require('../models').article;
+var Category = require('../models').category;
 var ArticleHistory = require('../models').articleHistory;
 var AWS = require('aws-sdk');
 var s3 = new AWS.S3();
@@ -33,7 +34,15 @@ exports.assign_category = function(req, res, next) {
 };
 
 exports.assign_popular = function(req, res, next) {
+  var category = req.params.category;
   Article.findAll({
+    include: [{
+      model: Category,
+      where: {
+        name: category
+      },
+      attributes: ['name']
+    }],
     order: 'seen DESC',
     limit: 5
   }).then(function(articles) {

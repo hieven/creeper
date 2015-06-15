@@ -17,7 +17,7 @@ exports.index = function(req, res) {
       },
       include: [{
         model: Category,
-        attributes: ['name']
+        attributes: ['name', 'zh']
       }]
     })
     .then(function(articles) {
