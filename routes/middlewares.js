@@ -41,7 +41,7 @@ exports.assign_popular = function(req, res, next) {
       where: {
         name: category
       },
-      attributes: ['name']
+      attributes: ['name', 'zh']
     }],
     order: 'seen DESC',
     limit: 5

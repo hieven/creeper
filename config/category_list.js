@@ -1,4 +1,4 @@
 module.exports = {
-  category: ['others', 'technology', 'sport', 'world', 'entertainment', 'politics'],
-  zh: ['其他', '科學&科技', '運動', '國際', '娛樂', '政治']
+  category: ['others', 'technology', 'health', 'sport', 'world', 'entertainment', 'politics'],
+  zh: ['其他', '科技', '健康', '體育', '國際', '娛樂', '政治']
 };

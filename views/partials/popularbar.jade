@@ -18,7 +18,7 @@
 
           h6.title
             a(href="/articles/#{category}/#{article.id}")= article.title
-          span.label(class="label-#{article.category.name}")= article.category.name
+          span.label(class="label-#{article.category.name}")= article.category.zh
           span.item-date
             i.fa.fa-calendar
             = article.time.toLocaleDateString()
