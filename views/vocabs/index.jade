@@ -13,11 +13,15 @@ block content
               th 音標
               th 解釋
           tbody
-            each vocab in vocabs
-              tr.vocab
-                td.title= vocab.word
-                td.caption= vocab.kk
-                  td.status
-                    each definition in vocab.definitions
-                      p= definition
-                    
+            if vocabs.length > 0
+              each vocab in vocabs
+                tr.vocab
+                  td.title= vocab.word
+                  td.caption= vocab.kk
+                    td.status
+                      each definition in vocab.definitions
+                        p= definition
+        if vocabs.length < 1
+          .no-content 
+            a(href="/articles/random") 您還沒有搜集任何一個單字呦！
+                      

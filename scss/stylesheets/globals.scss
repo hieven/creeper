@@ -68,12 +68,15 @@ $M: 10px;
 
 .no-content {
   @extend .text-center;
+  color:  $azure-color;
   width:  200px;
   height: 200px;
   margin: $M*5 auto;
+  
   &:before {
     content: '';
     display: block;
+    opacity: 0.6;
     width:  100%;
     height: 100%;
     background-image: url('https://s3-us-west-2.amazonaws.com/s3-cp08-100062101/website-photo/no_content.png');

@@ -13,13 +13,18 @@ block content
               th 簡述
               th 狀態
           tbody
-            each article in articles
-              tr.article
-                td.title= article.title
-                td.caption= article.caption
-                - if (article.articleHistory.isDone)
-                  td.status 
-                    a.text-primary(href="#") 完成
-                - else
-                  td.status
-                    a.text-danger(href="./#{article.category.name}/#{article.id}") 閱讀中
+            if articles.length > 0
+              each article in articles
+                tr.article
+                  td.title= article.title
+                  td.caption= article.caption
+                  - if (article.articleHistory.isDone)
+                    td.status 
+                      a.text-primary(href="#") 完成
+                  - else
+                    td.status
+                      a.text-danger(href="./#{article.category.name}/#{article.id}") 閱讀中
+        if articles.length < 1
+          .no-content 
+            a(href="/articles/random") 您還沒有看過任何一篇文章呦！
+            
