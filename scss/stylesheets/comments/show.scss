@@ -35,6 +35,12 @@
       .comment-avatar {
         @extend .col-lg-2;
         @extend .col-md-2;
+
+        img {
+          max-width: 50px;
+          border: 1px solid #333;
+          padding: $M/2;
+        }
       }
 
       .comment-wrapper {
