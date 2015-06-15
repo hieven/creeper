@@ -15,10 +15,12 @@ block content
 
         .content
           !{article.content}
-        - if (user)
+        if (user)
           button#complete-btn.btn.btn-azure(data-article-id="#{article.id}",
                                             data-category="#{article.category.dataValues.name}") 
             | 閱讀完成
+        else
+          a(href="/users/new").btn.btn-azure 成為漁夫！
   #search-result.animated.hide
     button.close.pull-right(type="button", aria-label="Close")
       span(aria-hidden="true")

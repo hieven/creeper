@@ -69,6 +69,17 @@ exports.check_admin = function(req, res, next) {
   next();
 };
 
+
+exports.check_login = function(req, res, next) {
+
+  // User does not login
+  if (!req.session.user) {
+    console.log('Sorry, you does not login!!!!!!!');
+    return res.redirect('/users/login');
+  }
+  next();
+};
+
 // Below are just lots of normal functions used everywhere.
 
 exports.s3Image = function(object) {
